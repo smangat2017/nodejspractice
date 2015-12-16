@@ -1,0 +1,1 @@
+Practice with Node Js. Built a newsfeed aggregator, local version of yelp, and played around with Handlebars + Local Storage
