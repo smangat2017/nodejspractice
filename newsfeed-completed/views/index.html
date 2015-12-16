@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Callback Newsfeed</title>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Parisienne|Cabin">
+    <link rel="stylesheet" href="/css/lib/normalize.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>
+          <i class="fa fa-newspaper-o"></i>
+          Callback Newsfeed
+        </h1>
+
+        <form id="search">
+          <div id="search-bar">
+            <input type="text" name="query" autocomplete="off"
+              placeholder="Post music, videos, or photos by searching" />
+
+            <img src="/images/loading.gif" alt="Loading" class="loading-icon">
+            <button type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+
+          <div id="search-results"></div>
+        </form>
+      </div>
+    </header>
+
+    <div class="error"></div>
+    <div id="newsfeed"></div>
+
+    <script type="text/x-handlebars-template" id="search-results-template">
+      {{#if results}}
+        {{#each results}}
+          <div class="result">
+            <img alt="{{ api }}" src="images/{{ api }}.png">
+            <span>{{ title }}</span>
+          </div>
+        {{/each}}
+      {{else}}
+        <span>No results found.</span>
+      {{/if}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="newsfeed-post-template">
+      <div class="post">
+        <div class="meta">
+          <h2>{{ title }}</h2>
+
+          <div class="actions">
+            <a href="#" class="upvote">
+              <i class="fa fa-chevron-up"></i>
+              <span class="upvote-count">{{ upvotes }}</span>
+            </a>
+
+            <span class="separator">&bull;</span>
+
+            <a href="#" class="remove">
+              <i class="fa fa-trash"></i>
+            </a>
+          </div>
+        </div>
+
+        {{#equal api 'flickr'}}
+          <img src="{{ source }}" alt="{{ title }}">
+        {{/equal}}
+
+        {{#equal api 'youtube'}}
+          <iframe type="text/html" width="100%" height="250" frameborder="0" src="{{ source }}"></iframe>
+        {{/equal}}
+
+        {{#equal api 'soundcloud'}}
+          <iframe type="text/html" width="100%" frameborder="0" src="{{ source }}"></iframe>
+        {{/equal}}
+      </div>
+    </script>
+
+    <!-- Libraries -->
+    <script src="/js/lib/jquery.min.js"></script>
+    <script src="/js/lib/masonry.min.js"></script>
+    <script src="/js/lib/imagesloaded.min.js"></script>
+    <script src="/js/lib/handlebars.js"></script>
+
+    <!-- Helpers -->
+    <script src="/js/handlebars-helpers.js"></script>
+
+    <!-- Models -->
+    <script src="/js/post-model.js"></script>
+    <script src="/js/search-model.js"></script>
+
+    <!-- Views -->
+    <script src="/js/main-view.js"></script>
+    <script src="/js/search-view.js"></script>
+    <script src="/js/newsfeed-view.js"></script>
+
+    <!-- Main -->
+    <script src="/js/main.js"></script>
+  </body>
+</html>

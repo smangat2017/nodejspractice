@@ -1,0 +1,16 @@
+{
+  "name": "callback-newsfeed",
+  "version": "0.0.1",
+  "description": "Application to search for music",
+  "engines": {
+    "node": ">= 0.6.19",
+    "npm": ">= 1.1.x"
+  },
+  "dependencies": {
+    "ejs": "~0.7.1",
+    "express": "^3.0.0",
+    "mongodb": "^1.4.9",
+    "mongoose": "^3.8.15",
+    "request": "^2.40.0"
+  }
+}
